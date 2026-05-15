@@ -2170,16 +2170,24 @@ function handleGoogleAuth(type) {
    */
  // Extraemos el nombre antes del @ usando el correo que el sistema ya detectó
     const nombreGenerado = email.split('@')[0];
-
-    // Iniciamos sesión dinámicamente
+// Creamos el usuario con el nombre extraído
     const mockUser = {
         name: nombreGenerado,
         email: email,
         loginAt: new Date().toISOString()
     };
-  saveSession(mockUser);
-  closeModal(type);
 
+    // Guardamos los datos en la memoria del navegador
+    localStorage.setItem('user', JSON.stringify(mockUser));
+
+    // Forzamos el salto al Dashboard después de un pequeño aviso
+    showToast(type === 'register' ? '¡Cuenta creada! Redirigiendo...' : 'Sesión iniciada. Bienvenido.');
+    
+    setTimeout(() => {
+        window.location.href = 'dashboard-app.html';
+    }, 1500);
+
+    return; // Detenemos cualquier otra función para que no falle
   /* ── REDIRECT AL DASHBOARD ──────────────────────────────────────
      En producción reemplazar por: window.location.href = '/auth/google?mode=' + type;
   ──────────────────────────────────────────────────────────────── */
