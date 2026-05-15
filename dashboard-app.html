@@ -362,7 +362,7 @@ td { padding: 13px 16px; color: var(--navy); vertical-align: middle; }
 ==========================================================-->
 <aside class="sidebar" id="sidebar">
   <div style="padding: 15px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1);">
-    <button id="btn-logout" style="width: 100%; background-color: #ff4d4d; border: none; color: white; padding: 10px; border-radius: 8px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+    <button id="btn-logout" onclick="localStorage.clear(); sessionStorage.clear(); window.location.href='index.html';" style="width: 100%; background-color: #ff4d4d; border: none; color: white; padding: 10px; border-radius: 8px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
         Cerrar Sesión
     </button>
 </div>
