@@ -1343,13 +1343,14 @@ function exportCSV() {
   INIT
 ==========================================================*/
 (function init() {
+  const userData = JSON.parse(localStorage.getItem('user'));
   // Fecha en topbar
   document.getElementById('topbar-date').textContent =
     new Date().toLocaleDateString('es-CL', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
 
   // Sidebar user
-  document.getElementById('sb-name').textContent = 'Wilxon Saldaña';
-  document.getElementById('sb-avatar').textContent = 'A';
+  document.getElementById('sb-name').textContent = userData ? userData.name : 'Invitado';
+  document.getElementById('sb-avatar').textContent = userData ? userData.name.charAt(0).toUpperCase() : 'U';
 
   // Datos iniciales demo (solo si la app está vacía)
   if (DB.getClientes().length === 0 && DB.getIngresos().length === 0) {
