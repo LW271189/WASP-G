@@ -2322,5 +2322,26 @@ function renderHistory() {
   }
 })();
 </script>
+ <script>
+  // Al cargar la página, verificamos la sesión
+  window.addEventListener('load', async () => {
+    // Revisamos si Supabase tiene un usuario activo
+    const { data: { session } } = await supabase.auth.getSession();
+
+    // Buscamos tus botones específicos
+    const btnAzulDashboard = document.querySelector('.btn-primary'); 
+    const btnAccederNav = document.querySelector('.nav-link-acceder');
+
+    if (!session) {
+      // SI NO HAY SESIÓN: Escondemos el botón azul y mostramos el de login
+      if (btnAzulDashboard) btnAzulDashboard.style.display = 'none';
+      if (btnAccederNav) btnAccederNav.style.display = 'block';
+    } else {
+      // SI HAY SESIÓN: Mostramos el acceso al dashboard y escondemos el login
+      if (btnAzulDashboard) btnAzulDashboard.style.display = 'block';
+      if (btnAccederNav) btnAccederNav.style.display = 'none';
+    }
+  });
+</script>
 </body>
 </html>
