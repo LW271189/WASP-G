@@ -356,6 +356,9 @@ td { padding: 13px 16px; color: var(--navy); vertical-align: middle; }
 </style>
 </head>
 <body>
+  <button id="btn-logout" style="background-color: #ff4d4d; color: white; padding: 10px 15px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; float: right; margin: 10px; position: relative; z-index: 1000;">
+  Cerrar Sesión
+</button>
 
 <!--==========================================================
   SIDEBAR
@@ -1360,6 +1363,14 @@ function exportCSV() {
   renderHome();
   updateBadges();
 })();
+  document.getElementById('btn-logout').addEventListener('click', async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+        alert("Hubo un error al cerrar sesión: " + error.message);
+    } else {
+        window.location.href = "index.html"; 
+    }
+});
 </script>
 </body>
 </html>
