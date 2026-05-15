@@ -2168,20 +2168,15 @@ function handleGoogleAuth(type) {
    *
    * A continuación se simula el retorno de OAuth para demostración:
    */
-  // 1. Atrapamos el correo que la persona acaba de escribir
-    const inputEncontrado = Array.from(document.querySelectorAll('input[type="email"]')).find(input => input.value !== '');
-    const emailEscrito = inputEncontrado ? inputEncontrado.value : 'invitado@hackathon.com';
-    
-    // 2. Extraemos el nombre mágicamente (todo lo que está antes del @)
-    const nombreGenerado = emailEscrito.split('@')[0];
+ // Extraemos el nombre antes del @ usando el correo que el sistema ya detectó
+    const nombreGenerado = email.split('@')[0];
 
-    // 3. Iniciamos sesión con sus datos reales
+    // Iniciamos sesión dinámicamente
     const mockUser = {
         name: nombreGenerado,
-        email: emailEscrito,
+        email: email,
         loginAt: new Date().toISOString()
     };
-
   saveSession(mockUser);
   closeModal(type);
 
