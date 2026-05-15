@@ -356,7 +356,7 @@ td { padding: 13px 16px; color: var(--navy); vertical-align: middle; }
 </style>
 </head>
 <body>
-  <button id="btn-logout" style="background-color: #ff4d4d; color: white; padding: 10px 15px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; float: right; margin: 10px; position: relative; z-index: 1000;">
+  <button id="btn-logout" style="position: absolute; top: 20px; right: 20px; background-color: transparent; border: 2px solid #ff4d4d; color: #ff4d4d; padding: 8px 16px; border-radius: 8px; font-weight: bold; cursor: pointer; z-index: 9999; transition: 0.3s;">
   Cerrar Sesión
 </button>
 
@@ -1364,11 +1364,12 @@ function exportCSV() {
   updateBadges();
 })();
   document.getElementById('btn-logout').addEventListener('click', async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) {
-        alert("Hubo un error al cerrar sesión: " + error.message);
-    } else {
-        window.location.href = "index.html"; 
+    try {
+        await supabase.auth.signOut();
+    } catch (error) {
+        console.log("Ignorando error, forzando salida...");
+    } finally {
+        window.location.replace("index.html"); 
     }
 });
 </script>
