@@ -1,2 +1,2 @@
 # WASP-G
-ia que ayuda a pymes o empresas a organizar sus clientes gastos ganancias y mantenerlos de forma ordenada
+ia que ayuda a gente o pequeños emprendimientos a gestionar o a prender a vender 
